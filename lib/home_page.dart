@@ -167,8 +167,9 @@ class _HomePageState extends State<HomePage> {
             Stack(
               children: <Widget>[
                 SizedBox(
-                height: 20,
+                height: 26,
                 child: LinearProgressIndicator(
+                  minHeight: 18,
                   value: value,
                   backgroundColor: Colors.grey,
                   valueColor: AlwaysStoppedAnimation<Color>(Colors.purple),
