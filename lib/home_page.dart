@@ -4,7 +4,8 @@ import 'package:tarea3/donativos.dart';
 import 'dart:async';
 double value = 0;
 var _value2;
-var _value3;
+String imgPayPal = "assets/paypal.png";
+String imgTarjeta = "assets/tarjeta-de-credito.png";
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -90,12 +91,13 @@ class _HomePageState extends State<HomePage> {
   double sumPaypal = 0;
   double sumTarjeta = 0;
   bool meta = false;
+  double porcentage = 0.0;
   
   void downloadData(){
     String s = _value2.toString();
     if(s == "1"){
       sumPaypal += double.parse(dropdownvalue);
-    }else{
+    }else if(s == "2"){
       sumTarjeta += double.parse(dropdownvalue);
     }
      sum += double.parse(dropdownvalue);
@@ -103,11 +105,13 @@ class _HomePageState extends State<HomePage> {
      print("Paypal = $sumPaypal");
      print("Tarjeta = $sumTarjeta");
      if(sum < 10000){
-        value = value + ((1*double.parse(dropdownvalue))/10000.00);
-        //print(value);
+        value +=  ((1*double.parse(dropdownvalue))/10000.00);
+        porcentage += ((100*double.parse(dropdownvalue))/10000.00);
+        print(porcentage);
      }else{
        meta = true;
        value = 1;
+       porcentage = 100.00;
      }
   }
   @override
@@ -159,14 +163,21 @@ class _HomePageState extends State<HomePage> {
               },
               ),
             ),
-            SizedBox(height: 15),
-              LinearProgressIndicator(
-                backgroundColor: Colors.grey,
-                color: Colors.green,
-                minHeight: 18,
-                value: value,
-                
+            ///SizedBox(height: 15),
+            Stack(
+              children: <Widget>[
+                SizedBox(
+                height: 20,
+                child: LinearProgressIndicator(
+                  value: value,
+                  backgroundColor: Colors.grey,
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.purple),
+                ),
               ),
+               Align(child: Text("$porcentage %"), alignment: Alignment.topCenter,),
+            ],
+           ),
+              
               SizedBox(height: 9),
               MaterialButton(
                 onPressed: (){
@@ -176,7 +187,7 @@ class _HomePageState extends State<HomePage> {
                     
                   });
                 },
-                color: Colors.blue[900],
+                color: Colors.purple[900],
                 height: 50.0,
                 minWidth: double.infinity,
                 child: Text(
@@ -211,14 +222,4 @@ class _HomePageState extends State<HomePage> {
         )
       );
   }
-}
-class RadioModel {
-  bool isSelected;
-  final IconData icon;
-  final String text;
-  final Color selectedColor;
-  final Color defaultColor;
-
-  RadioModel(this.isSelected, this.icon, this.text, this.selectedColor,
-      this.defaultColor);
 }
