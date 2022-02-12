@@ -2,14 +2,19 @@ import 'package:flutter/material.dart';
 
 class Donativos extends StatefulWidget {
   final donativos;
+  
   Donativos({Key? key, this.donativos}) : super(key: key);
 
   @override
   State<Donativos> createState() => _DonativosState();
+  
 }
 
+
 class _DonativosState extends State<Donativos> {
+  
   @override
+  
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -42,7 +47,8 @@ class _DonativosState extends State<Donativos> {
                   "${widget.donativos["acomulado"] ?? 0.0}",
                   style: TextStyle(fontSize: 32),
                   ),
-              )
+              ),
+              Image.asset("assets/gracias.png")
             ],),
         )
       );
