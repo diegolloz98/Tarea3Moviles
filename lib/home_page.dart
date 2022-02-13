@@ -93,7 +93,7 @@ class _HomePageState extends State<HomePage> {
   bool meta = false;
   double porcentage = 0.0;
   
-  void downloadData(){
+  void BarraPorcentaje(){
     String s = _value2.toString();
     if(s == "1"){
       sumPaypal += double.parse(dropdownvalue);
@@ -183,7 +183,7 @@ class _HomePageState extends State<HomePage> {
               MaterialButton(
                 onPressed: (){
                   //print('pressed $_value2');
-                  downloadData();
+                  BarraPorcentaje();
                   setState(() {
                     
                   });
