@@ -94,6 +94,9 @@ class _HomePageState extends State<HomePage> {
   double porcentage = 0.0;
   
   void BarraPorcentaje(){
+    
+    //print((100*double.parse(dropdownvalue))/10000.00);
+    //print((1*double.parse(dropdownvalue))/10000.00);
     String s = _value2.toString();
     if(s == "1"){
       sumPaypal += double.parse(dropdownvalue);
